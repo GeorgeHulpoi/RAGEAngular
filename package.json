@@ -1,0 +1,29 @@
+{
+  "name": "rage-angular",
+  "version": "1.0.0",
+  "description": "The RAGE Module for Angular",
+  "main": "bundles/rage.umd.min.js",
+  "module": "index.js",
+  "typings": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Armyw0w/RAGEAngular.git"
+  },
+  "keywords": [
+    "angular",
+    "rage",
+	"rage.mp",
+	"gta",
+	"gta5",
+	"gta 5 mp",
+	"multiplayer",
+	"five",
+	"angularjs"
+  ],
+  "author": "Armyw0w",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Armyw0w/RAGEAngular/issues"
+  },
+  "homepage": "https://github.com/Armyw0w/RAGEAngular#readme"
+}
