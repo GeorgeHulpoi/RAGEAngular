@@ -4,11 +4,15 @@ Hi, my name is Armyw0w, I made this Module to integrate Angular in RAGE Multipla
 
 ## Installation
 
-You need NodeJS installed (You can download it from [here](https://nodejs.org)
+You need NodeJS installed (You can download it from [here](https://nodejs.org))
 > npm install rage-angular@latest
 
 ## Import module
 
+I hope you know to import the module, if not, you should take a look [here](https://angular.io/guide/ngmodule)
+
+##### IMPORTANT!
+If you don't import the RAGE in a component the RAGEInit() callback it will never be called.
  
 ## Header 2
 ### Header 3
