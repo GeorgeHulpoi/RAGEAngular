@@ -1,3 +1,5 @@
+![Image of RAGE](https://se7en.ws/wp-content/uploads/2017/03/ragemp-logo.png) ![Image of Angular](https://angular.io/assets/images/logos/angular/angular.png)
+
 # RAGE Angular
 
 Hi, my name is Armyw0w, I made this Module to integrate Angular in RAGE Multiplayer (for the CEF more exactly)
