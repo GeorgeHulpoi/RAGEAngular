@@ -18,7 +18,7 @@ If you don't import the RAGE in a component the RAGEInit() callback it will neve
 
 You need to add a script after/before build in index.html, in that script you will hook the functions (Client <=> Middle-man <=> Angular)
 
-```
+```javascript
 <script>
 function RAGEInit() {
     alert ( 'Woah, the Angular loaded RAGE Service, now I can use all these functions');
