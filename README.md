@@ -1,15 +1,10 @@
-## Welcome to GitHub Pages
+## RAGE Angular
 
-You can use the [editor on GitHub](https://github.com/Armyw0w/RAGEAngular/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Hi, my name is Armyw0w, I made this Module to integrate Angular in RAGE Multiplayer (for the CEF more exactly)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Installation
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
+You need NodeJS installed (You can download it from [link to here](https://nodejs.org)
 
 # Header 1
 ## Header 2
