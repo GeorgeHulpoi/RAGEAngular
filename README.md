@@ -12,7 +12,7 @@ You need NodeJS installed (You can download it from [here](https://nodejs.org))
 I hope you know to import the module, if not, you should take a look [here](https://angular.io/guide/ngmodule)
 
 ### IMPORTANT!
-If you don't import the RAGE in a component the RAGEInit() callback it will never be called.
+If you don't inject the RAGE in a component the RAGEInit() callback it will never be called.
  
 ## The real middle-man between Client and Angular
 
@@ -26,3 +26,9 @@ function RAGEInit() {
 }
 </script>
 ```
+
+## TO DO
+
+* Import all RAGE Multiplayer Functions
+* Create custom functions
+* Async functions (Promise type)
