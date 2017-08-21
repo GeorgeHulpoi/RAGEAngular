@@ -1,10 +1,10 @@
 {
   "name": "rage-angular",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The RAGE Module for Angular",
-  "main": "bundles/rage.umd.min.js",
-  "module": "index.js",
-  "typings": "index.d.ts",
+  "main": "rage-angular.min.js",
+  "module": "Source/index.js",
+  "typings": "Source/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/Armyw0w/RAGEAngular.git"
