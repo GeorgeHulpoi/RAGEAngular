@@ -11,29 +11,18 @@ You need NodeJS installed (You can download it from [here](https://nodejs.org))
 
 I hope you know to import the module, if not, you should take a look [here](https://angular.io/guide/ngmodule)
 
-##### IMPORTANT!
+### IMPORTANT!
 If you don't import the RAGE in a component the RAGEInit() callback it will never be called.
  
-## Header 2
-### Header 3
+## The real middle-man between Client and Angular
 
-- Bulleted
-- List
+You need to add a script after/before build in index.html, in that script you will hook the functions (Client <=> Middle-man <=> Angular)
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
 ```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Armyw0w/RAGEAngular/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+<script>
+function RAGEInit() {
+    alert ( 'Woah, the Angular loaded RAGE Service, now I can use all these functions');
+    // No functions now :(
+}
+</script>
+```
