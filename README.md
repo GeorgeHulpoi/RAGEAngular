@@ -1,12 +1,15 @@
-## RAGE Angular
+# RAGE Angular
 
 Hi, my name is Armyw0w, I made this Module to integrate Angular in RAGE Multiplayer (for the CEF more exactly)
 
-### Installation
+## Installation
 
-You need NodeJS installed (You can download it from [link to here](https://nodejs.org)
+You need NodeJS installed (You can download it from [here](https://nodejs.org)
+> npm install rage-angular@latest
 
-# Header 1
+## Import module
+
+ 
 ## Header 2
 ### Header 3
 
