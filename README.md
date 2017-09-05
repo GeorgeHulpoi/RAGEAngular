@@ -1,4 +1,4 @@
-![Image of RAGE](https://se7en.ws/wp-content/uploads/2017/03/ragemp-logo.png) ![Image of Angular](https://angular.io/assets/images/logos/angular/angular.png)
+![Image of Angular](https://angular.io/assets/images/logos/angular/angular.png)
 
 # RAGE Angular
 
@@ -85,7 +85,34 @@ interface RAGEEvent {
 }
 ```
 
+So you can verify if sent event is yours
+```javascript
+import { Component } from '@angular/core';
+import { RAGE } from 'rage-angular';
+
+@Component({
+  selector: 'my-component'
+})
+export class ChatComponent {
+    constructor(private Rage: RAGE) {
+        Rage.listen.subscribe(
+            (data) => {
+                if (data.func === 'MyNewEvent') {
+                    // Great
+                    alert ( data.args[0] );
+                }
+                else if ( data.func === 0 ) {
+                    // Great
+                    alert ( data.args[0] );
+                }
+            }
+        );
+    }
+}
+```
+
 ## TO DO
 
+* Creating a event out of listen.
 * Import all RAGE Multiplayer Functions (waiting for better docs)
 * Async functions
