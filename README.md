@@ -53,8 +53,8 @@ function RAGECall(func, args) {
 }
 ```
 And now you can call any function with this.
-### IMPORTANT! You can call RAGE.call, but be carefully, the module needs to be loaded.
-### RAGE.call will be undefined if module isn't loaded
+#### IMPORTANT! You can call RAGE.call, but be carefully, the module needs to be loaded.
+#### RAGE.call will be undefined if module isn't loaded
 
 ## Listening the custom events in Angular
 
