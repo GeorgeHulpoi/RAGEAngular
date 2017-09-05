@@ -59,20 +59,27 @@ And now you can call any function with this.
 ## Listening the custom events in Angular
 
 ```javascript
-import { Component } from '@angular/core';
-import { RAGE } from 'rage-angular';
+import { Component } from '@angular/core'; 
+import { RAGE } from 'rage-angular'; 
 
-@Component({
-  selector: 'my-component'
-})
-export class ChatComponent {
-    constructor(private Rage: RAGE) {
-        Rage.listen.subscribe(
-            (data) => {
-                console.log(data);
-            }
-        );
-    }
+@Component({ 
+	selector: 'my-component' 
+}) 
+export class ChatComponent 
+{ 
+	private sub: any;
+
+	constructor(private Rage: RAGE) { 
+		this.sub = Rage.listen.subscribe( 
+			(data) => { 
+				console.log(data); 
+			} 
+		); 
+	} 
+	
+	ngOnDestroy() {
+		this.sub.unsubscribe();
+	}
 }
 ```
 #### The Rage.listen will send a RAGEEvent, you have the interface here:
@@ -85,27 +92,34 @@ interface RAGEEvent {
 
 So you can verify if sent event is yours
 ```javascript
-import { Component } from '@angular/core';
-import { RAGE } from 'rage-angular';
+import { Component } from '@angular/core'; 
+import { RAGE } from 'rage-angular'; 
 
-@Component({
-  selector: 'my-component'
-})
-export class ChatComponent {
-    constructor(private Rage: RAGE) {
-        Rage.listen.subscribe(
-            (data) => {
-                if (data.func === 'MyNewEvent') {
-                    // Great
-                    alert ( data.args[0] );
-                }
-                else if ( data.func === 0 ) {
-                    // Great
-                    alert ( data.args[0] );
-                }
-            }
-        );
-    }
+@Component({ 
+	selector: 'my-component' 
+}) 
+export class ChatComponent 
+{ 
+	private sub: any;
+
+	constructor(private Rage: RAGE) { 
+		this.sub = Rage.listen.subscribe( 
+			(data) => { 
+				if (data.func === 'MyNewEvent') { 
+					// Great 
+					alert ( data.args[0] ); 
+				}
+				else if ( data.func === 0 ) { 
+					// Great 
+					alert ( data.args[0] ); 
+				} 
+			} 
+		); 
+	} 
+	
+	ngOnDestroy() {
+		this.sub.unsubscribe();
+	}
 }
 ```
 
