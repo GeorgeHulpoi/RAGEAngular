@@ -22,15 +22,70 @@ You need to add a script after/before build in index.html, in that script you wi
 
 ```javascript
 <script>
+var RLoaded = false;
 function RAGEInit() {
-    alert ( 'Woah, the Angular loaded RAGE Service, now I can use all these functions');
-    // No functions now :(
+    RLoaded = true; // Condition for calling the Angular
+    // If you want to call some functions here (RAGE Angular) you need to add a Timeout with +500ms
+    // Why? Seems like EventEmitter doesn't work immediately after the service is injected
+}
+
+function CustomFunction() {
+    if(RLoaded) {
+        // RAGE.call ( function name / id, ..arguments)
+        // You can set a ID for function for faster check
+        RAGE.call('CustomFunction', 'arg1', 5, {test: 'Wow'});
+    }
+}
+
+/*
+Do not edit this function!!!
+*/ 
+function callClient(func, ...args) {
+    mp.trigger(func, args);
 }
 </script>
 ```
 
+You can delete CustomFunction and add:
+```javascript
+function RAGECall(func, args) {
+    if(RLoaded) {
+        RAGE.call(func, args);
+    }
+}
+```
+And now you can call any function with this.
+### IMPORTANT! You can call RAGE.call, but be carefully, the module needs to be loaded.
+### RAGE.call will be undefined if module isn't loaded
+
+## Listening the custom events in Angular
+
+```javascript
+import { Component } from '@angular/core';
+import { RAGE } from 'rage-angular';
+
+@Component({
+  selector: 'my-component'
+})
+export class ChatComponent {
+    constructor(private Rage: RAGE) {
+        Rage.listen.subscribe(
+            (data) => {
+                console.log(data);
+            }
+        );
+    }
+}
+```
+#### The Rage.listen will send a RAGEEvent, you have the interface here:
+```javascript
+interface RAGEEvent {
+    func: string | number;
+    args: any[];
+}
+```
+
 ## TO DO
 
-* Import all RAGE Multiplayer Functions
-* Create custom functions
-* Async functions (Promise type)
+* Import all RAGE Multiplayer Functions (waiting for better docs)
+* Async functions
