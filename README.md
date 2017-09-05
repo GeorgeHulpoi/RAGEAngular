@@ -109,6 +109,29 @@ export class ChatComponent {
 }
 ```
 
+## Call the Client from Angular
+
+```javascript
+import { Component } from '@angular/core';
+import { RAGE } from 'rage-angular';
+
+@Component({
+  selector: 'my-component'
+})
+export class ChatComponent {
+    constructor(private Rage: RAGE) {
+        Rage.callClient('AnotherEvent', 'bla bla', 5);
+    }
+}
+```
+
+And then you just need to catch it in Client:
+```javascript
+mp.events.add('AnotherEvent', function() {
+    // Here you go
+});
+```
+
 ## TO DO
 
 * Creating a event out of listen.
