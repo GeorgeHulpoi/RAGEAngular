@@ -37,9 +37,7 @@ function CustomFunction() {
     }
 }
 
-/*
-Do not edit this function!!!
-*/ 
+// Do not edit this function!!!
 function callClient(func, ...args) {
     mp.trigger(func, args);
 }
