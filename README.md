@@ -60,7 +60,7 @@ constructor(private rage: RAGE)
 }
 ```
 ### !! Don't put in args more than 4 elements, and use only strings and numbers
-### !! I know in interface it's added object type, but trust me, it's better to don't add a object.
+### !! I know in interface it's added object type, but trust me, it's better to don't add a object (I will fix that in next update).
 ### !! If you want more arguments, you are free to edit RageJS.callClient
 
 Before calling the **mp.trigger**, because we have **the callback function** we need to put the function in a some kind of register which have **all function** which are waiting for a **response** from the client.
