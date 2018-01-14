@@ -1,0 +1,120 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'publish' ]
+2 info using npm@3.10.10
+3 info using node@v6.11.2
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   escapedName: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: 'C:\\Projects\\RAGEAngular',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory C:\Users\Armyw0w\AppData\Roaming\npm-cache\rage-angular\1.0.2\package.tgz not in flight; packing
+9 verbose correctMkdir C:\Users\Armyw0w\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+10 info lifecycle rage-angular@1.0.2~prepublish: rage-angular@1.0.2
+11 silly lifecycle rage-angular@1.0.2~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ 'C:\\Users\\Armyw0w\\AppData\\Roaming\\npm-cache\\rage-angular\\1.0.2\\package.tgz',
+12 verbose tar pack   'C:\\Projects\\RAGEAngular' ]
+13 verbose tarball C:\Users\Armyw0w\AppData\Roaming\npm-cache\rage-angular\1.0.2\package.tgz
+14 verbose folder C:\Projects\RAGEAngular
+15 verbose addLocalTarball adding from inside cache C:\Users\Armyw0w\AppData\Roaming\npm-cache\rage-angular\1.0.2\package.tgz
+16 verbose correctMkdir C:\Users\Armyw0w\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+17 silly cache afterAdd rage-angular@1.0.2
+18 verbose afterAdd C:\Users\Armyw0w\AppData\Roaming\npm-cache\rage-angular\1.0.2\package\package.json not in flight; writing
+19 verbose correctMkdir C:\Users\Armyw0w\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+20 verbose afterAdd C:\Users\Armyw0w\AppData\Roaming\npm-cache\rage-angular\1.0.2\package\package.json written
+21 silly publish { name: 'rage-angular',
+21 silly publish   version: '1.0.2',
+21 silly publish   description: 'The RAGE Module for Angular',
+21 silly publish   main: 'rage-angular.min.js',
+21 silly publish   module: 'Source/index.js',
+21 silly publish   typings: 'Source/index.d.ts',
+21 silly publish   repository:
+21 silly publish    { type: 'git',
+21 silly publish      url: 'git+https://github.com/Armyw0w/RAGEAngular.git' },
+21 silly publish   keywords:
+21 silly publish    [ 'angular',
+21 silly publish      'rage',
+21 silly publish      'rage.mp',
+21 silly publish      'gta',
+21 silly publish      'gta5',
+21 silly publish      'gta 5 mp',
+21 silly publish      'multiplayer',
+21 silly publish      'five',
+21 silly publish      'angularjs' ],
+21 silly publish   author: { name: 'Armyw0w' },
+21 silly publish   license: 'MIT',
+21 silly publish   bugs: { url: 'https://github.com/Armyw0w/RAGEAngular/issues' },
+21 silly publish   homepage: 'https://github.com/Armyw0w/RAGEAngular#readme',
+21 silly publish   readme: '![Image of Angular](https://angular.io/assets/images/logos/angular/angular.png)\r\n\r\n# RAGE Angular\r\n\r\nHi, my name is Armyw0w, I made this Module to integrate Angular in RAGE Multiplayer (for the CEF more exactly)\r\n\r\n## Installation\r\n\r\nYou need NodeJS installed (You can download it from [here](https://nodejs.org))\r\n> npm install rage-angular@latest\r\n\r\n## Import module\r\n\r\nI hope you know to import the module, if not, you should take a look [here](https://angular.io/guide/ngmodule)\r\n\r\n### IMPORTANT!\r\nIf you don\'t inject the RAGE in a component the RAGEInit() callback it will never be called.\r\n \r\n## The real middle-man between Client and Angular\r\n\r\nYou need to add a script after/before build in index.html, in that script you will hook the functions (Client <=> Middle-man <=> Angular)\r\n\r\n```javascript\r\n<script>\r\nvar RLoaded = false;\r\nfunction RAGEInit() {\r\n    RLoaded = true; // Condition for calling the Angular\r\n    // If you want to call some functions here (RAGE Angular) you need to add a Timeout with +500ms\r\n    // Why? Seems like EventEmitter doesn\'t work immediately after the service is injected\r\n}\r\n\r\nfunction CustomFunction() {\r\n    if(RLoaded) {\r\n        // RAGE.call ( function name / id, ..arguments)\r\n        // You can set a ID for function for faster check\r\n        RAGE.call(\'CustomFunction\', \'arg1\', 5, {test: \'Wow\'});\r\n    }\r\n}\r\n\r\n// Do not edit this function!!!\r\nfunction callClient(func, ...args) {\r\n    mp.trigger(func, args);\r\n}\r\n</script>\r\n```\r\n\r\nYou can delete CustomFunction and add:\r\n```javascript\r\nfunction RAGECall(func, args) {\r\n    if(RLoaded) {\r\n        RAGE.call(func, args);\r\n    }\r\n}\r\n```\r\nAnd now you can call any function with this.\r\n#### IMPORTANT! You can call RAGE.call, but be carefully, the module needs to be loaded.\r\n#### RAGE.call will be undefined if module isn\'t loaded\r\n\r\n## Listening the custom events in Angular\r\n\r\n```javascript\r\nimport { Component } from \'@angular/core\'; \r\nimport { RAGE } from \'rage-angular\'; \r\n\r\n@Component({ \r\n\tselector: \'my-component\' \r\n}) \r\nexport class ChatComponent \r\n{ \r\n\tprivate sub: any;\r\n\r\n\tconstructor(private Rage: RAGE) { \r\n\t\tthis.sub = Rage.listen.subscribe( \r\n\t\t\t(data) => { \r\n\t\t\t\tconsole.log(data); \r\n\t\t\t} \r\n\t\t); \r\n\t} \r\n\t\r\n\tngOnDestroy() {\r\n\t\tthis.sub.unsubscribe();\r\n\t}\r\n}\r\n```\r\n#### The Rage.listen will send a RAGEEvent, you have the interface here:\r\n```javascript\r\ninterface RAGEEvent {\r\n    func: string | number;\r\n    args: any[];\r\n}\r\n```\r\n\r\nSo you can verify if sent event is yours\r\n```javascript\r\nimport { Component } from \'@angular/core\'; \r\nimport { RAGE } from \'rage-angular\'; \r\n\r\n@Component({ \r\n\tselector: \'my-component\' \r\n}) \r\nexport class ChatComponent \r\n{ \r\n\tprivate sub: any;\r\n\r\n\tconstructor(private Rage: RAGE) { \r\n\t\tthis.sub = Rage.listen.subscribe( \r\n\t\t\t(data) => { \r\n\t\t\t\tif (data.func === \'MyNewEvent\') { \r\n\t\t\t\t\t// Great \r\n\t\t\t\t\talert ( data.args[0] ); \r\n\t\t\t\t}\r\n\t\t\t\telse if ( data.func === 0 ) { \r\n\t\t\t\t\t// Great \r\n\t\t\t\t\talert ( data.args[0] ); \r\n\t\t\t\t} \r\n\t\t\t} \r\n\t\t); \r\n\t} \r\n\t\r\n\tngOnDestroy() {\r\n\t\tthis.sub.unsubscribe();\r\n\t}\r\n}\r\n```\r\n\r\n## Call the Client from Angular\r\n\r\n```javascript\r\nimport { Component } from \'@angular/core\';\r\nimport { RAGE } from \'rage-angular\';\r\n\r\n@Component({\r\n  selector: \'my-component\'\r\n})\r\nexport class ChatComponent {\r\n    constructor(private Rage: RAGE) {\r\n        Rage.callClient(\'AnotherEvent\', \'bla bla\', 5);\r\n    }\r\n}\r\n```\r\n\r\nAnd then you just need to catch it in Client:\r\n```javascript\r\nmp.events.add(\'AnotherEvent\', function() {\r\n    // Here you go\r\n});\r\n```\r\n\r\n## TO DO\r\n\r\n* Creating a event out of listen.\r\n* Import all RAGE Multiplayer Functions (waiting for better docs)\r\n* Async functions\r\n',
+21 silly publish   readmeFilename: 'README.md',
+21 silly publish   gitHead: '2f59c57e532336c6184af2c6e1e0409beb9a4e1e',
+21 silly publish   _id: 'rage-angular@1.0.2',
+21 silly publish   scripts: {},
+21 silly publish   _shasum: '51d0baa4bc7ca0771e53f3d3ff40b3086b147e3e',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name rage-angular
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry https://registry.npmjs.org/
+26 silly mapToRegistry data Result {
+26 silly mapToRegistry   raw: 'rage-angular',
+26 silly mapToRegistry   scope: null,
+26 silly mapToRegistry   escapedName: 'rage-angular',
+26 silly mapToRegistry   name: 'rage-angular',
+26 silly mapToRegistry   rawSpec: '',
+26 silly mapToRegistry   spec: 'latest',
+26 silly mapToRegistry   type: 'tag' }
+27 silly mapToRegistry uri https://registry.npmjs.org/rage-angular
+28 verbose publish registryBase https://registry.npmjs.org/
+29 silly publish uploading C:\Users\Armyw0w\AppData\Roaming\npm-cache\rage-angular\1.0.2\package.tgz
+30 verbose request uri https://registry.npmjs.org/rage-angular
+31 verbose request sending authorization for write operation
+32 info attempt registry request try #1 at 6:25:50 PM
+33 verbose request using bearer token for auth
+34 verbose request id 3e235d5902990c04
+35 http request PUT https://registry.npmjs.org/rage-angular
+36 http 403 https://registry.npmjs.org/rage-angular
+37 verbose headers { 'content-type': 'application/json',
+37 verbose headers   'cache-control': 'max-age=300',
+37 verbose headers   'content-length': '91',
+37 verbose headers   'accept-ranges': 'bytes',
+37 verbose headers   date: 'Sun, 14 Jan 2018 16:25:52 GMT',
+37 verbose headers   via: '1.1 varnish',
+37 verbose headers   connection: 'keep-alive',
+37 verbose headers   'x-served-by': 'cache-fra19131-FRA',
+37 verbose headers   'x-cache': 'MISS',
+37 verbose headers   'x-cache-hits': '0',
+37 verbose headers   'x-timer': 'S1515947151.099436,VS0,VE1382',
+37 verbose headers   vary: 'Accept-Encoding, Accept' }
+38 verbose request invalidating C:\Users\Armyw0w\AppData\Roaming\npm-cache\registry.npmjs.org\rage-angular on PUT
+39 error publish Failed PUT 403
+40 verbose stack Error: You cannot publish over the previously published version 1.0.2. : rage-angular
+40 verbose stack     at makeError (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:302:12)
+40 verbose stack     at CachingRegistryClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:290:14)
+40 verbose stack     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:210:14)
+40 verbose stack     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:187:22)
+40 verbose stack     at emitTwo (events.js:106:13)
+40 verbose stack     at Request.emit (events.js:191:7)
+40 verbose stack     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1048:10)
+40 verbose stack     at emitOne (events.js:96:13)
+40 verbose stack     at Request.emit (events.js:188:7)
+40 verbose stack     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:969:12)
+41 verbose statusCode 403
+42 verbose pkgid rage-angular
+43 verbose cwd C:\Projects\RAGEAngular
+44 error Windows_NT 10.0.16299
+45 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "publish"
+46 error node v6.11.2
+47 error npm  v3.10.10
+48 error code E403
+49 error You cannot publish over the previously published version 1.0.2. : rage-angular
+50 error If you need help, you may report this error at:
+50 error     <https://github.com/npm/npm/issues>
+51 verbose exit [ 1, true ]
