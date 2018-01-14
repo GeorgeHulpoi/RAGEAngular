@@ -75,6 +75,7 @@ mp.events.add('testFunction', function(responseId, arg1, arg2) {
 });
 ```
 ### I will do a library for Client-side, the aboxe example it's just to show you how to catch the call.
+The **responseId** parameter it's the unique id from that **register**.
 And now the **console.log(response)** will print
 > My response is: NO!
 
