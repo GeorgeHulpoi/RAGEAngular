@@ -29,7 +29,7 @@ Get the **[library](https://github.com/Armyw0w/RAGEAngular/blob/master/middleman
 Now you can **call a function** from Angular to client (with *mp.trigger*) and wait for a response from client **(optional)**
 
 This is a *sample example* about how to call a **client function** without **the callback function**
-```
+```javascript
 constructor(private rage: RAGE)
 {
 	rage.Client.call(
@@ -42,10 +42,8 @@ constructor(private rage: RAGE)
 	});
 }
 ```
-
 Now let's start talking about **the callback function**
-
-```
+```javascript
 constructor(private rage: RAGE)
 {
 	rage.Client.call(
@@ -61,9 +59,25 @@ constructor(private rage: RAGE)
 	});
 }
 ```
+Before calling the **mp.trigger**, because we have **the callback function** we need to put the function in a some kind of register which have **all function** which are waiting for a **response** from the client.
+It's better to not put the **callback parameter** if you don't send a **response** back to **Angular**.
 
-Before 
- 
+Now let's go on the client-side
+```javascript
+angular = mp.browsers.new('package://Angular/index.html');
+
+mp.events.add('testFunction', function(responseId, arg1, arg2) {
+	mp.gui.chat.push("received: " + arg1 + ", " + arg2);
+	mp.gui.chat.push("we send a response to : " + responseId);
+	
+	// Sending back a response
+	menu.execute("RageJS.sendFuncResponseToRAGE('" + responseId + "','testFunction','My response is: NO!');");
+});
+```
+### I will do a library for Client-side, the aboxe example it's just to show you how to catch the call.
+And now the **console.log(response)** will print
+> My response is: NO!
+
 ## Listening the custom events in Angular
 ### !! This it will be rewriten !!
 
