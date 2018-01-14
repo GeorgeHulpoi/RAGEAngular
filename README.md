@@ -15,6 +15,7 @@ I hope you know to import the module, if not, you should take a look **[here](ht
 
 #### IMPORTANT!
 If you don't inject the **RAGE** in a **component** the **RAGEInit()** callback it will never be called.
+Don't put the **Angular builded files** in **client_packages**, the application it will **never work**!!!
  
 ### Adding the Middleman between Client and Angular
 
