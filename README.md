@@ -23,47 +23,8 @@ Get the **[library](https://github.com/Armyw0w/RAGEAngular/blob/master/middleman
  
 > <script type="text/javascript" src="middleman.min.js"></script>
  
-## The real middle-man between Client and Angular
-
-You need to add a script after/before build in index.html, in that script you will hook the functions (Client <=> Middle-man <=> Angular)
-
-```javascript
-<script>
-var RLoaded = false;
-function RAGEInit() {
-    RLoaded = true; // Condition for calling the Angular
-    // If you want to call some functions here (RAGE Angular) you need to add a Timeout with +500ms
-    // Why? Seems like EventEmitter doesn't work immediately after the service is injected
-}
-
-function CustomFunction() {
-    if(RLoaded) {
-        // RAGE.call ( function name / id, ..arguments)
-        // You can set a ID for function for faster check
-        RAGE.call('CustomFunction', 'arg1', 5, {test: 'Wow'});
-    }
-}
-
-// Do not edit this function!!!
-function callClient(func, ...args) {
-    mp.trigger(func, args);
-}
-</script>
-```
-
-You can delete CustomFunction and add:
-```javascript
-function RAGECall(func, args) {
-    if(RLoaded) {
-        RAGE.call(func, args);
-    }
-}
-```
-And now you can call any function with this.
-#### IMPORTANT! You can call RAGE.call, but be carefully, the module needs to be loaded.
-#### RAGE.call will be undefined if module isn't loaded
-
 ## Listening the custom events in Angular
+## !! This it will be rewriten !!
 
 ```javascript
 import { Component } from '@angular/core'; 
@@ -128,29 +89,6 @@ export class ChatComponent
 		this.sub.unsubscribe();
 	}
 }
-```
-
-## Call the Client from Angular
-
-```javascript
-import { Component } from '@angular/core';
-import { RAGE } from 'rage-angular';
-
-@Component({
-  selector: 'my-component'
-})
-export class ChatComponent {
-    constructor(private Rage: RAGE) {
-        Rage.callClient('AnotherEvent', 'bla bla', 5);
-    }
-}
-```
-
-And then you just need to catch it in Client:
-```javascript
-mp.events.add('AnotherEvent', function() {
-    // Here you go
-});
 ```
 
 ## TO DO
