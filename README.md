@@ -161,3 +161,4 @@ export class ChatComponent
 - [x] Add better **documentation** (see the Source)
 - [ ] Add call **Angular** function from **Client** (sync)
 - [ ] Add all **RAGE functions/events**
+- [ ] Create a library for client-side
