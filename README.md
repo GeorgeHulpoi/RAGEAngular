@@ -80,6 +80,9 @@ The **responseId** parameter it's the unique id from that **register**.
 And now the **console.log(response)** will print
 > My response is: NO!
 
+### !! If you don't send an object through sendFuncResponseToRange, don't put as first character the '{'
+### !! In the function I check if the first character is '{', and if it is, the all string will be converted in an object
+
 ## Listening the custom events in Angular
 ### !! This it will be rewriten !!
 
