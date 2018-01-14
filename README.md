@@ -6,15 +6,22 @@ Hi, my name is Armyw0w, I made this Module to integrate Angular in RAGE Multipla
 
 ## Installation
 
-You need NodeJS installed (You can download it from [here](https://nodejs.org))
+You need **NodeJS** installed (You can download it from **[here](https://nodejs.org)**)
 > npm install rage-angular@latest
 
-## Import module
+### Import module
 
-I hope you know to import the module, if not, you should take a look [here](https://angular.io/guide/ngmodule)
+I hope you know to import the module, if not, you should take a look **[here](https://angular.io/guide/ngmodule)**
 
-### IMPORTANT!
-If you don't inject the RAGE in a component the RAGEInit() callback it will never be called.
+#### IMPORTANT!
+If you don't inject the **RAGE** in a **component** the **RAGEInit()** callback it will never be called.
+ 
+### Adding the Middleman between Client and Angular
+
+You need to add a javascript library to use the module.
+Get the **[library](https://github.com/Armyw0w/RAGEAngular/blob/master/middleman.min.js)** and put in the **index.html**
+ 
+> <script type="text/javascript" src="middleman.min.js"></script>
  
 ## The real middle-man between Client and Angular
 
