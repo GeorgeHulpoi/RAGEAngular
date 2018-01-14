@@ -24,7 +24,7 @@ Get the **[library](https://github.com/Armyw0w/RAGEAngular/blob/master/middleman
 > <script type="text/javascript" src="middleman.min.js"></script>
  
 ## Listening the custom events in Angular
-## !! This it will be rewriten !!
+### !! This it will be rewriten !!
 
 ```javascript
 import { Component } from '@angular/core'; 
