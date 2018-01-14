@@ -24,6 +24,46 @@ Get the **[library](https://github.com/Armyw0w/RAGEAngular/blob/master/middleman
  
 > <script type="text/javascript" src="middleman.min.js"></script>
  
+## Calling the Client from Angular (synchronized) 
+
+Now you can **call a function** from Angular to client (with *mp.trigger*) and wait for a response from client **(optional)**
+
+This is a *sample example* about how to call a **client function** without **the callback function**
+```
+constructor(private rage: RAGE)
+{
+	rage.Client.call(
+    	{
+		fn: "testFunction",
+		args: [
+			10,
+			'some string'
+		]
+	});
+}
+```
+
+Now let's start talking about **the callback function**
+
+```
+constructor(private rage: RAGE)
+{
+	rage.Client.call(
+    	{
+		fn: "testFunction",
+		args: [
+			10,
+			'some string'
+		]
+	},
+	(response: any) => {
+		console.log(response);
+	});
+}
+```
+
+Before 
+ 
 ## Listening the custom events in Angular
 ### !! This it will be rewriten !!
 
