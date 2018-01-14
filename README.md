@@ -15,11 +15,13 @@ I hope you know to import the module, if not, you should take a look **[here](ht
 
 #### IMPORTANT!
 If you don't inject the **RAGE** in a **component** the **RAGEInit()** callback it will never be called.
+
 Don't put the **Angular builded files** in **client_packages**, the application it will **never work**!!!
  
 ### Adding the Middleman between Client and Angular
 
 You need to add a javascript library to use the module.
+
 Get the **[library](https://github.com/Armyw0w/RAGEAngular/blob/master/middleman.min.js)** and put in the **index.html**
  
 > <script type="text/javascript" src="middleman.min.js"></script>
@@ -64,6 +66,7 @@ constructor(private rage: RAGE)
 ### !! If you want more arguments, you are free to edit RageJS.callClient
 
 Before calling the **mp.trigger**, because we have **the callback function** we need to put the function in a some kind of register which have **all function** which are waiting for a **response** from the client.
+
 It's better to not put the **callback parameter** if you don't send a **response** back to **Angular**.
 
 Now let's go on the client-side
