@@ -1,6 +1,6 @@
 {
   "name": "rage-angular",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "The RAGE Module for Angular",
   "main": "rage-angular.min.js",
   "module": "Source/index.js",
