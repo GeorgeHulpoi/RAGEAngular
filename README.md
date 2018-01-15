@@ -74,11 +74,12 @@ Now let's go on the client-side
 angular = mp.browsers.new('package://Angular/index.html');
 
 mp.events.add('testFunction', function(responseId, arg1, arg2) {
+	// responseId could be undefined if you haven't the callback function set
 	mp.gui.chat.push("received: " + arg1 + ", " + arg2);
 	mp.gui.chat.push("we send a response to : " + responseId);
 	
 	// Sending back a response
-	menu.execute("RageJS.sendFuncResponseToRAGE('" + responseId + "','testFunction','My response is: NO!');");
+	angular.execute("RageJS.sendFuncResponseToRAGE('" + responseId + "','testFunction','My response is: NO!');");
 });
 ```
 ### I will do a library for Client-side, the aboxe example it's just to show you how to catch the call.
@@ -163,5 +164,6 @@ export class ChatComponent
 - [x] Add call **Client** function from **Angular** (sync)
 - [x] Add better **documentation** (see the Source)
 - [ ] Add call **Angular** function from **Client** (sync)
+- [ ] Remove posibility to send a object argument
 - [ ] Add all **RAGE functions/events**
 - [ ] Create a library for client-side
