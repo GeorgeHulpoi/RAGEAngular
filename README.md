@@ -14,7 +14,7 @@ You need **NodeJS** installed (You can download it from **[here](https://nodejs.
 I hope you know to import the module, if not, you should take a look **[here](https://angular.io/guide/ngmodule)**
 
 #### IMPORTANT!
-If you don't inject the **RAGE** in a **component** the **RAGEInit()** callback it will never be called.
+If you don't inject the **RAGE** in a **component** the **RageJS.Init()** callback it will never be called.
 
 Don't put the **Angular builded files** in **client_packages**, the application it will **never work**!!!
  
