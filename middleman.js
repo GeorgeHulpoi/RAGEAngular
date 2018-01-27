@@ -1,4 +1,5 @@
-function RageMP() {
+function RageMP() 
+{
 	this.Loaded = false;
 
 	this.Init = function() 
@@ -21,34 +22,7 @@ function RageMP() {
 
 	this.callClient = function (func, data)
 	{
-		switch(data.Arguments.length)
-		{
-			case 0:
-			{
-				mp.trigger(func, data.catchResponse.id);
-				break;
-			}
-			case 1:
-			{
-				mp.trigger(func, data.catchResponse.id, data.Arguments[0]);
-				break;
-			}
-			case 2: 
-			{
-				mp.trigger(func, data.catchResponse.id, data.Arguments[0], data.Arguments[1]);
-				break;
-			}
-			case 3:
-			{
-				mp.trigger(func, data.catchResponse.id, data.Arguments[0], data.Arguments[1], data.Arguments[2]);
-				break;
-			}
-			case 4:
-			{
-				mp.trigger(func, data.catchResponse.id, data.Arguments[0], data.Arguments[1], data.Arguments[2], data.Arguments[3]);
-				break;
-			}
-		}
+		mp.trigger(func, data.catchResponse.id, ...data.Arguments);
 	}
 }
 
