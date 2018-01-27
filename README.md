@@ -26,6 +26,10 @@ Get the **[library](https://github.com/Armyw0w/RAGEAngular/blob/master/middleman
  
 > <script type="text/javascript" src="middleman.min.js"></script>
  
+And remove from **index.html** this part:
+
+> <base href="/">
+ 
 ## Calling the Client from Angular (synchronized) 
 
 Now you can **call a function** from Angular to client (with *mp.trigger*) and wait for a response from client **(optional)**
@@ -65,20 +69,21 @@ Before calling the **mp.trigger**, because we have **the callback function** we 
 
 It's better to not put the **callback parameter** if you don't send a **response** back to **Angular**.
 
-Now let's go on the client-side
-```javascript
-angular = mp.browsers.new('package://Angular/index.html');
+Now let's go on the **client-side**, you have to add the **[Angular library(https://github.com/Armyw0w/RAGEAngular/tree/master/Client)**
 
-mp.events.add('testFunction', function(responseId, arg1, arg2) {
-	// responseId could be undefined if you haven't the callback function set
+
+```javascript
+var Angular = require("./angular.min.js");
+
+Angular.load("package://test/index.html");
+
+Angular.listen("fnTest", function(arg1, arg2) 
+{
 	mp.gui.chat.push("received: " + arg1 + ", " + arg2);
-	mp.gui.chat.push("we send a response to : " + responseId);
 	
-	// Sending back a response
-	angular.execute("RageJS.sendFuncResponseToRAGE('" + responseId + "','testFunction','My response is: NO!');");
+	return 'My response is NO!';
 });
 ```
-### I will do a library for Client-side, the aboxe example it's just to show you how to catch the call.
 The **responseId** parameter it's the unique id from that **register**.
 
 And now the **console.log(response)** will print
