@@ -4,7 +4,7 @@
 
 Hi, my name is Armyw0w, I made this Module to integrate Angular in RAGE Multiplayer (for the CEF more exactly)
 
-# [Wiki](https://github.com/Armyw0w/RAGEAngular/wiki)
+## [Wiki](https://github.com/Armyw0w/RAGEAngular/wiki)
 
 ## Installation
 
