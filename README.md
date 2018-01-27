@@ -69,7 +69,7 @@ Before calling the **mp.trigger**, because we have **the callback function** we 
 
 It's better to not put the **callback parameter** if you don't send a **response** back to **Angular**.
 
-Now let's go on the **client-side**, you have to add the **[Angular library(https://github.com/Armyw0w/RAGEAngular/tree/master/Client)**
+Now let's go on the **client-side**, you have to add the [**Angular library**](https://github.com/Armyw0w/RAGEAngular/tree/master/Client)
 
 
 ```javascript
