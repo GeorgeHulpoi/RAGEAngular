@@ -161,7 +161,7 @@ export interface RAGEClient {
  */
 export interface RAGEClientCall {
     fn: string | number;
-    args: Array<number | string | object>;
+    args: Array<number | string>;
 }
 
 /**
