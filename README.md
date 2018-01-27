@@ -159,7 +159,7 @@ export class ChatComponent
 
 - [x] Add call **Client** function from **Angular** (sync)
 - [x] Add better **documentation** (see the Source)
-- [x] Removed arguments **limit***.
+- [x] Removed arguments **limit**.
 - [ ] Add call **Angular** function from **Client** (sync)
 - [ ] Remove posibility to send a object argument
 - [ ] Add all **RAGE functions/events**
