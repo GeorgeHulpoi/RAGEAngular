@@ -160,6 +160,7 @@ export class ChatComponent
 }
 ```
 
+
 ## TO DO
 
 - [x] Add call **Client** function from **Angular** (sync)
