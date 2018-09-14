@@ -19,6 +19,7 @@ If you don't inject the **RAGE Service** in an **active component**, the **RageJ
 Don't move the **Angular built files** in the **client_packages** folder. You have to create a **custom folder** in the **client_packages** folder and move the **Angular built files** in that folder.
 
 Remove from **index.html** this part:
+
 > <base href="/">
  
 ### The Middleman between Client and Angular
