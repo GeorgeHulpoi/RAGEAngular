@@ -2,46 +2,40 @@
 
 # RAGE Angular
 
-Hi, my name is Armyw0w, I made this Module to integrate Angular in RAGE Multiplayer (for the CEF more exactly)
-
-## [Wiki](https://github.com/Armyw0w/RAGEAngular/wiki)
+Hello, my name is George-Valentin Hulpoi. I have made this Angular Module for a Chromium Embedded Framework application (RAGE Multiplayer). In summary, you can call synchronized functions from Angular or Chromium Embedded Framework application with this module.
 
 ## Installation
 
-You need **NodeJS** installed (You can download it from **[here](https://nodejs.org)**)
+You need to have **NodeJS** installed (You can download it from **[here](https://nodejs.org)**)
 > npm install rage-angular@latest
 
 ### Import module
 
-I hope you know to import the module, if not, you should take a look **[here](https://angular.io/guide/ngmodule)**
+If you don't know how to import a module in Angular, **[read this article](https://angular.io/guide/ngmodule)**.
 
 #### IMPORTANT!
-If you don't inject the **RAGE** in a **component** the **RageJS.Init()** callback it will never be called.
+If you don't inject the **RAGE Service** in an **active component**, the **RageJS.Init()** function never will be called.
 
-Don't put the **Angular builded files** in **client_packages**, the application it will **never work**!!!
- 
-### Adding the Middleman between Client and Angular
+Don't move the **Angular built files** in the **client_packages** folder. You have to create a **custom folder** in the **client_packages** folder and move the **Angular built files** in that folder.
 
-You need to add a javascript library to use the module.
-
-Get the **[library](https://github.com/Armyw0w/RAGEAngular/blob/master/middleman.min.js)** and put in the **index.html**
- 
-> <script type="text/javascript" src="middleman.min.js"></script>
- 
-And remove from **index.html** this part:
-
+Remove from **index.html** this part:
 > <base href="/">
+ 
+### The Middleman between Client and Angular
+
+You have to add a javascript library to use this module.
+
+Download the **[library](https://github.com/Armyw0w/RAGEAngular/blob/master/middleman.min.js)** and insert the script from below in **index.html**
+> <script type="text/javascript" src="middleman.min.js"></script>
  
 ## Calling the Client from Angular (synchronized) 
 
-Now you can **call a function** from Angular to client (with *mp.trigger*) and wait for a response from client **(optional)**
-
-This is a *sample example* about how to call a **client function** without **the callback function**
+This example will call a **client function** without waiting for a response from **client** (It's something like Promise).
 ```javascript
 constructor(private rage: RAGE)
 {
-	rage.Client.call(
-    	{
+	rage.Client.call
+	({
 		fn: "testFunction",
 		args: [
 			10,
@@ -50,19 +44,20 @@ constructor(private rage: RAGE)
 	});
 }
 ```
-Now let's start talking about **the callback function**
+This example will call a **client function**... 
 ```javascript
 constructor(private rage: RAGE)
 {
-	rage.Client.call(
-    	{
+	rage.Client.call
+	({
 		fn: "testFunction",
 		args: [
 			10,
 			'some string'
 		]
 	},
-	(response: any) => {
+	(response: any) =>
+	{
 		console.log(response);
 	});
 }
