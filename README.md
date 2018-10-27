@@ -25,12 +25,12 @@ Remove from **index.html** this part:
 
 You have to add a javascript library to use this module.
 
-Download the **[library](https://github.com/Armyw0w/RAGEAngular/blob/master/middleman.min.js)** and insert the script from below in **index.html**
+Download the **[library](https://github.com/GeorgeHulpoi/RAGEAngular/blob/master/middleman.min.js)** and insert the script from below in **index.html**
 > <script type="text/javascript" src="middleman.min.js"></script>
  
 ## Calling the Client from Angular (synchronized) 
 
-This example will call a **client function** without waiting for a response from **client** (It's something like Promise).
+The example below will call a **client function** (a function outside of the CEF) without waiting for a response.
 ```javascript
 constructor(private rage: RAGE)
 {
@@ -44,7 +44,7 @@ constructor(private rage: RAGE)
 	});
 }
 ```
-This example will call a **client function**... 
+This example below will call a **client function** and the **function parameter** will be called with the response from **client**.
 ```javascript
 constructor(private rage: RAGE)
 {
@@ -62,11 +62,11 @@ constructor(private rage: RAGE)
 	});
 }
 ```
-Before calling the **mp.trigger**, because we have **the callback function** we need to put the function in a some kind of register which have **all function** which are waiting for a **response** from the client.
+Because the **mp.trigger** doesn't return a response from the **client**, the **called function** is stored in the module in the form of id. The module call the **client** with the id and arguments and send back the response + the id stored in the module. In this way I call the **response function parameter** with the **response**.
 
-It's better to not put the **callback parameter** if you don't send a **response** back to **Angular**.
+I recomand you to not add the **response function parameter** if you don't **need** or don't **send** a response back to Angular.
 
-Now let's go on the **client-side**, you have to add the [**Angular library**](https://github.com/Armyw0w/RAGEAngular/tree/master/Client)
+Now let's go on the **client-side**, you must add the [**Angular library**](https://github.com/GeorgeHulpoi/RAGEAngular/tree/master/Client)
 
 
 ```javascript
@@ -81,89 +81,16 @@ Angular.listen("fnTest", function(arg1, arg2)
 	return 'My response is NO!';
 });
 ```
-The **responseId** parameter it's the unique id from that **register**.
+The **responseId** parameter it's the id created in **Angular**.
 
-And now the **console.log(response)** will print
+Now the **console.log(response)** from **response function parameter** will print:
 > My response is: NO!
 
-### !! If you don't send an object through sendFuncResponseToRange, don't put as first character the '{'
-### !! In the function I check if the first character is '{', and if it is, the all string will be converted in an object
-
-## Listening the custom events in Angular
-### !! This it will be rewriten !!
-
-```javascript
-import { Component } from '@angular/core'; 
-import { RAGE } from 'rage-angular'; 
-
-@Component({ 
-	selector: 'my-component' 
-}) 
-export class ChatComponent 
-{ 
-	private sub: any;
-
-	constructor(private Rage: RAGE) { 
-		this.sub = Rage.listen.subscribe( 
-			(data) => { 
-				console.log(data); 
-			} 
-		); 
-	} 
-	
-	ngOnDestroy() {
-		this.sub.unsubscribe();
-	}
-}
-```
-#### The Rage.listen will send a RAGEEvent, you have the interface here:
-```javascript
-interface RAGEEvent {
-    func: string | number;
-    args: any[];
-}
-```
-
-So you can verify if sent event is yours
-```javascript
-import { Component } from '@angular/core'; 
-import { RAGE } from 'rage-angular'; 
-
-@Component({ 
-	selector: 'my-component' 
-}) 
-export class ChatComponent 
-{ 
-	private sub: any;
-
-	constructor(private Rage: RAGE) { 
-		this.sub = Rage.listen.subscribe( 
-			(data) => { 
-				if (data.func === 'MyNewEvent') { 
-					// Great 
-					alert ( data.args[0] ); 
-				}
-				else if ( data.func === 0 ) { 
-					// Great 
-					alert ( data.args[0] ); 
-				} 
-			} 
-		); 
-	} 
-	
-	ngOnDestroy() {
-		this.sub.unsubscribe();
-	}
-}
-```
-
+### !! If you don't send an object through sendFuncResponseToRange, don't set the first character "{".
+#### The function check if the first character is '{', and if it's true, the string will be converted into an object.
 
 ## TO DO
 
-- [x] Add call **Client** function from **Angular** (sync)
-- [x] Add better **documentation** (see the Source)
-- [x] Removed arguments **limit**.
-- [x] Remove posibility to send a object argument
-- [x] Create a library for client-side
-- [ ] Add call **Angular** function from **Client** (sync)
+- [ ] Call **Angular** function from the **Client** (sync)
+- [ ] Listen the flow of the called functions.
 - [ ] Add all **RAGE functions/events**
